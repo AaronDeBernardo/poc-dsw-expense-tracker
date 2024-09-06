@@ -1,0 +1,15 @@
+{
+  "name": "poc-dsw-expense-tracker",
+  "version": "1.0.0",
+  "description": "Expense Tracker app - Proof of Concept - Desarrollo de Software 2024",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Danteo Elías, De Bernardo Aarón, Gramaglia Francisca and Agustín Stringa",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^32.0.2"
+  }
+}
