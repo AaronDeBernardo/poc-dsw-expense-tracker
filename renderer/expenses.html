@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <meta
+      http-equiv="X-Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <title>Nuevo Gasto</title>
+  </head>
+
+  <body>
+    <h3>Agrega un nuevo Gasto</h3>
+    <form id="expenseForm">
+      <div class="form-field">
+        <label for="categoriesSelect">Categoría: </label>
+        <select name="" id="categoriesSelect"></select>
+      </div>
+      <div class="form-field">
+        <label for="expenseName">Nombre: </label>
+        <input type="text" id="expenseName" />
+      </div>
+      <div class="form-field">
+        <label for="expenseAmount">Cantidad ($): </label>
+        <input type="number" id="expenseAmount" />
+      </div>
+      <button type="submit">Añadir</button>
+    </form>
+  </body>
+
+  <script src="./expenses.js"></script>
+</html>
