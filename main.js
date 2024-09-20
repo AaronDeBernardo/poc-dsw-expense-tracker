@@ -8,10 +8,22 @@ let categories = [
   { id: 3, name: "Transporte" },
   { id: 4, name: "Salud" },
 ];
+const expenses = [
+  // {
+  //   id: 27,
+  //   name: "Entrada Cine",
+  //   amount: 3500,
+  //   category: {
+  //     name: "Entretenimiento"
+  //   }
+  // },
+];
+let nextExpenseId = 0;
 let nextId = 5;
 
 let mainWindow;
 let categoriesWindow;
+let addExpenseWindow;
 
 const createMainWindow = () => {
   mainWindow = new BrowserWindow({
@@ -26,6 +38,9 @@ const createMainWindow = () => {
   });
 
   mainWindow.loadFile(path.join("renderer", "index.html"));
+  mainWindow.webContents.on("did-finish-load", () => {
+    mainWindow.webContents.send("update-expenses", expenses);
+  })
 };
 
 const createCategoriesWindows = () => {
@@ -53,6 +68,33 @@ const createCategoriesWindows = () => {
   });
 };
 
+const createAddExpenseWindows = () => {
+
+  addExpenseWindow = new BrowserWindow({
+    width: 400,
+    height: 400,
+    parent: mainWindow,
+    webPreferences: {
+      preload: path.join(__dirname, "preload.js"),
+      contextIsolation: true,
+      enableRemoteModule: false,
+      nodeIntegration: false,
+    },
+  });
+
+  addExpenseWindow.loadFile(path.join("renderer", "expenses.html"));
+
+  addExpenseWindow.once("ready-to-show", () => {
+    addExpenseWindow.send("expenses", categories);
+    addExpenseWindow.show();
+  });
+
+  addExpenseWindow.on("closed", () => {
+    addExpenseWindow = null;
+  });
+};
+
+// APP
 app.whenReady().then(() => {
   createMainWindow();
 
@@ -65,10 +107,24 @@ app.on("window-all-closed", () => {
   if (process.platform !== "darwin") app.quit(); //si no es Mac
 });
 
+//WINDOWS
 ipcMain.on("categories-window", () => {
   if (!categoriesWindow) {
     createCategoriesWindows();
   }
+});
+
+ipcMain.on("add-expense-window", () => {
+  if (!addExpenseWindow) {
+    createAddExpenseWindows();
+  }
+});
+
+//METHODS
+ipcMain.on("add-expense", (_event, data) => {
+  expenses.push({ id: nextExpenseId++, name: data.name, category: data.category, amount: data.amount });
+  mainWindow.webContents.send("update-expenses", expenses);
+  addExpenseWindow.close();
 });
 
 ipcMain.on("add-category", (_event, data) => {
