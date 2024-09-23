@@ -4,7 +4,7 @@ window.api.on("categories", (categories) => {
   const list = document.getElementById("categoriesList");
 
   const items = categories.reduce((html, c) => {
-    html += `<li>${c.name}<button data-id="${c.id}" class="delete-button">Eliminar</button></li>`;
+    html += `<li style="display:flex; justify-content: space-between">${c.name}<button data-id="${c.id}" class="delete-button">Eliminar</button></li>`;
     return html;
   }, "");
 
@@ -22,6 +22,7 @@ window.api.on("categories", (categories) => {
 document.getElementById("categoryForm").addEventListener("submit", (event) => {
   event.preventDefault();
   const input = event.target[0];
-  window.api.send("add-category", { name: input.value });
+  if (input.value.trim() !== "")
+    window.api.send("add-category", { name: input.value });
   input.value = "";
 });

@@ -2,16 +2,33 @@
 <html>
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <!-- esta línea no me deja aplicar estilos
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">-->
   <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
   <title>Categorías</title>
+  <style>
+    body{
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      flex-direction: column;
+    }
+    button:hover{
+      cursor: pointer;
+    }
+    .delete-button{
+      margin-left: 15px;
+    }
+  </style>
 </head>
 
 <body>
   <h3>Categorías</h3>
+  
   <ul id="categoriesList"></ul>
+  
   <form id="categoryForm">
-    <input type="text"><button type="submit">Añadir</button>
+    <input type="text"><button type="submit" style="background-color: aquamarine;">Añadir</button>
   </form>
 </body>
 
