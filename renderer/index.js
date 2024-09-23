@@ -9,19 +9,27 @@ document.getElementById("addExpenseBtn").addEventListener("click", () => {
 });
 
 window.api.on("update-expenses", (expenses) => {
-  const ul = document.getElementById("expensesList");
+  const table = document.getElementById("expensesTable");
   if (expenses.length > 0) {
+    const tableHeader = `<tr>
+      <th>Fecha</th>
+      <th>Categoría</th>
+      <th>Descripción</th>
+      <th>Monto</th>
+      </tr>`;
+
     const items = expenses.reduce((html, e) => {
-      html += `<div>
-      <p>id: ${e.id} </p>
-      <p>nombre: ${e.name} </p>
-      <p>cantidad: ${e.amount} </p>
-      <p>categoria: ${e.category.name} </p>
-      </div>`;
+      html += `<tr>
+      <td>${e.date}</td>
+      <td>${e.category.name}</td>
+      <td>${e.name}</td>
+      <td>${e.amount}</td>
+      </tr>`;
       return html;
     }, "");
-    ul.innerHTML = items;
+
+    table.innerHTML = tableHeader + items;
   } else {
-    ul.innerHTML = `<p>No hay gastos registrados aún. Agrega uno para comenzar</p>`;
+    table.innerHTML = `No hay gastos registrados aún. Agrega uno para comenzar`;
   }
 });

@@ -1,5 +1,7 @@
 "use strict";
 
+document.getElementById("date").valueAsDate = new Date();
+
 window.api.on("categories", (categories) => {
   const select = document.getElementById("categoriesSelect");
 
@@ -12,17 +14,21 @@ window.api.on("categories", (categories) => {
 
 document.getElementById("expenseForm").addEventListener("submit", (event) => {
   event.preventDefault();
-  const expenseNameInput = document.getElementById("expenseName");
+  const dateInput = document.getElementById("date");
+  const expenseNameInput = document.getElementById("expenseDescription");
   const expenseAmountInput = document.getElementById("expenseAmount");
   const categoriesSelect = document.getElementById("categoriesSelect");
+
   window.api.send("add-expense", {
+    date: dateInput.value,
     name: expenseNameInput.value,
     amount: expenseAmountInput.value,
     category: {
       name: categoriesSelect.options[categoriesSelect.selectedIndex].text,
-      id: categoriesSelect.selectedIndex,
+      id: categoriesSelect.value,
     },
   });
+
   expenseNameInput.value = "";
   expenseAmountInput.value = 0;
 });

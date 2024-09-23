@@ -1,0 +1,16 @@
+body {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.form-field{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}

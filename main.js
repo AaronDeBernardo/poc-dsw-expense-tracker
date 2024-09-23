@@ -61,6 +61,8 @@ const createAddExpenseWindows = () => {
     width: 400,
     height: 400,
     parent: mainWindow,
+    resizable: false,
+    minimizable: false,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       contextIsolation: true,
@@ -110,6 +112,7 @@ ipcMain.on("add-expense-window", () => {
 //METHODS
 ipcMain.on("add-expense", (_event, data) => {
   let expense = {
+    date: data.date,
     name: data.name,
     category: data.category,
     amount: data.amount,
