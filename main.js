@@ -24,6 +24,7 @@ const createMainWindow = () => {
   mainWindow.loadFile(path.join("renderer", "index.html"));
   mainWindow.webContents.on("did-finish-load", () => {
     mainWindow.webContents.send("update-expenses", dataStore.expenses);
+    mainWindow.webContents.send("update-chart", { expenses: dataStore.expenses });
   });
 };
 
@@ -120,6 +121,7 @@ ipcMain.on("add-expense", (_event, data) => {
 
   const expenses = dataStore.addExpense(expense).expenses;
   mainWindow.webContents.send("update-expenses", expenses);
+  mainWindow.webContents.send("update-chart", expenses);
   addExpenseWindow.close();
 });
 
@@ -132,3 +134,7 @@ ipcMain.on("delete-category", (_event, data) => {
   const categories = dataStore.deleteCategory(data.id).categories;
   categoriesWindow.send("categories", categories);
 });
+
+// ipcMain.on("create-chart", (_event, data) => {
+
+// })

@@ -39,3 +39,59 @@ window.api.on("update-expenses", (expenses) => {
     table.innerHTML = `No hay gastos registrados aún. Agrega uno para comenzar`;
   }
 });
+
+function getRandomInt() {
+  return Math.floor(Math.random() * 256);
+}
+function drawPieChart(data) {
+  const canvas = document.getElementById('pieChart');
+  const ctx = canvas.getContext('2d');
+  const total = data.reduce((sum, item) => sum + item.value, 0);
+  let startAngle = 0;
+
+
+  const ul = document.getElementById("categories-chart-list");
+  data.forEach((item) => {
+    const sliceAngle = (item.value / total) * 2 * Math.PI; // Calcula el ángulo del segmento
+
+    ctx.beginPath();
+    ctx.moveTo(100, 100);
+    ctx.arc(100, 100, 100, startAngle, startAngle + sliceAngle); // Dibuja el arco
+    ctx.closePath();
+
+    item.color = `rgb(${getRandomInt()},${getRandomInt()},${getRandomInt()})`;
+    const li = document.createElement("li");
+    li.innerText = item.label;
+    li.style.color = `${item.color}`;
+    ul.appendChild(li);
+
+    ctx.fillStyle = item.color
+    ctx.fill();
+
+    ctx.strokeStyle = '#fff';
+    ctx.stroke();
+
+
+    startAngle += sliceAngle;
+  });
+
+}
+
+window.api.on("update-chart", async (data) => {
+  const { expenses } = data;
+  const categoryCount = [];
+  expenses.forEach(item => {
+    const categoryName = item.category.name;
+    if (!categoryCount[categoryName]) {
+      categoryCount[categoryName] = Number(item.amount);
+    }
+    categoryCount[categoryName] += Number(item.amount);
+  });
+  const result = Object.entries(categoryCount).map(([label, value]) => ({
+    label,
+    value
+  }));
+
+  drawPieChart(result);
+});
+

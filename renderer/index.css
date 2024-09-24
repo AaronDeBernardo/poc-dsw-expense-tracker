@@ -96,3 +96,14 @@ h4 span {
 #expensesTable tbody tr:nth-child(odd) {
     background-color: #ffffff;
 }
+
+canvas {
+    display: block;
+    margin: 1rem auto 2rem auto;
+}
+
+#categories-chart-list {
+    width: 300px;
+    margin: 0 auto 1rem auto;
+    font-size: 1rem;
+}
