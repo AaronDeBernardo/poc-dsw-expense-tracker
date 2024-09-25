@@ -8,9 +8,12 @@ document.getElementById("addExpenseBtn").addEventListener("click", () => {
 });
 
 window.api.on("update-expenses", (expenses) => {
+  const divNoExpensesMessage = document.getElementById("noExpensesMessage");
   if (expenses.length > 0) {
-    const totalAmount = document.getElementById("totalAmount");
+    divNoExpensesMessage.innerHTML = "";
+    divNoExpensesMessage.style.display = "none";
     const table = document.getElementById("expensesTable");
+    const totalAmount = document.getElementById("totalAmount");
     const tableHeader = `
     <thead>
     <tr>
@@ -36,7 +39,7 @@ window.api.on("update-expenses", (expenses) => {
     table.innerHTML = tableHeader + items;
     totalAmount.innerHTML = `Gastos totales: <span> $${initialValue} </span>`;
   } else {
-    table.innerHTML = `No hay gastos registrados aún. Agrega uno para comenzar`;
+    divNoExpensesMessage.innerHTML = `No hay gastos registrados aún. Agrega uno para comenzar`;
   }
 });
 
@@ -49,8 +52,8 @@ function drawPieChart(data) {
   const total = data.reduce((sum, item) => sum + item.value, 0);
   let startAngle = 0;
 
-
   const ul = document.getElementById("categories-chart-list");
+  ul.innerHTML = "";
   data.forEach((item) => {
     const sliceAngle = (item.value / total) * 2 * Math.PI; // Calcula el ángulo del segmento
 
@@ -78,9 +81,13 @@ function drawPieChart(data) {
 }
 
 window.api.on("update-chart", async (data) => {
-  const { expenses } = data;
+  if (data.length == 0) {
+    document.getElementById("pieChart").style.display = "none";
+    return;
+  }
+  document.getElementById("pieChart").style.display = "block";
   const categoryCount = [];
-  expenses.forEach(item => {
+  data.forEach(item => {
     const categoryName = item.category.name;
     if (!categoryCount[categoryName]) {
       categoryCount[categoryName] = Number(item.amount);

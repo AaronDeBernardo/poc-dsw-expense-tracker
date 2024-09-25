@@ -19,10 +19,15 @@ document.getElementById("expenseForm").addEventListener("submit", (event) => {
   const expenseAmountInput = document.getElementById("expenseAmount");
   const categoriesSelect = document.getElementById("categoriesSelect");
 
+  const expenseName = expenseNameInput.value.trim();
+  const amount = expenseAmountInput.value;
+  if (expenseName == null || expenseName == "" || amount < 0 || amount == '') {
+    return;
+  }
   window.api.send("add-expense", {
     date: dateInput.value,
-    name: expenseNameInput.value,
-    amount: expenseAmountInput.value,
+    name: expenseName,
+    amount: amount,
     category: {
       name: categoriesSelect.options[categoriesSelect.selectedIndex].text,
       id: categoriesSelect.value,

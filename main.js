@@ -21,17 +21,18 @@ const createMainWindow = () => {
     },
   });
 
+  mainWindow.maximize();
   mainWindow.loadFile(path.join("renderer", "index.html"));
   mainWindow.webContents.on("did-finish-load", () => {
     mainWindow.webContents.send("update-expenses", dataStore.expenses);
-    mainWindow.webContents.send("update-chart", { expenses: dataStore.expenses });
+    mainWindow.webContents.send("update-chart", dataStore.expenses);
   });
 };
 
 const createCategoriesWindows = () => {
   categoriesWindow = new BrowserWindow({
     width: 400,
-    height: 400,
+    height: 600,
     parent: mainWindow,
     resizable: false,
     minimizable: false,
@@ -60,7 +61,7 @@ const createCategoriesWindows = () => {
 const createAddExpenseWindows = () => {
   addExpenseWindow = new BrowserWindow({
     width: 400,
-    height: 400,
+    height: 600,
     parent: mainWindow,
     resizable: false,
     minimizable: false,
@@ -134,7 +135,3 @@ ipcMain.on("delete-category", (_event, data) => {
   const categories = dataStore.deleteCategory(data.id).categories;
   categoriesWindow.send("categories", categories);
 });
-
-// ipcMain.on("create-chart", (_event, data) => {
-
-// })

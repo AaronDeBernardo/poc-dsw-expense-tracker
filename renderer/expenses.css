@@ -9,8 +9,20 @@ button:hover {
   cursor: pointer;
 }
 
-.form-field{
+.form-field {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  margin-bottom: 10px;
+  gap: .5rem;
+  margin: 1rem 0;
+}
+
+form button {
+  border-radius: .5rem;
+  font-size: 1rem;
+  padding: .5rem;
+}
+
+.text-end {
+  text-align: end;
 }
