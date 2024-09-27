@@ -36,8 +36,6 @@ const createCategoriesWindows = () => {
     parent: mainWindow,
     resizable: false,
     minimizable: false,
-    //titleBarStyle: "hidden",
-    //frame: false, me gustaría sacar el menú superior, pero desaparece el botón de cerrar y hay que realizar uno propio
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       contextIsolation: true,
@@ -47,6 +45,15 @@ const createCategoriesWindows = () => {
   });
 
   categoriesWindow.loadFile(path.join("renderer", "categories.html"));
+
+  ipcMain.on("screen-ready", () => {
+    categoriesWindow.webContents
+      .executeJavaScript("document.body.scrollHeight")
+      .then((height) => {
+        height = height + 50 > 600 ? 600 : height + 50;
+        categoriesWindow.setContentSize(400, height);
+      });
+  });
 
   categoriesWindow.once("ready-to-show", () => {
     categoriesWindow.send("categories", dataStore.categories);

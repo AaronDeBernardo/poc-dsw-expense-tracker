@@ -22,9 +22,7 @@ window.api.on("update-expenses", (expenses) => {
       <th>Descripción</th>
       <th>Monto</th>
       </tr>
-      </thead>`
-      ;
-
+      </thead>`;
     let initialValue = 0;
     const items = expenses.reduce((html, e) => {
       initialValue += Number(e.amount);
@@ -47,8 +45,8 @@ function getRandomInt() {
   return Math.floor(Math.random() * 256);
 }
 function drawPieChart(data) {
-  const canvas = document.getElementById('pieChart');
-  const ctx = canvas.getContext('2d');
+  const canvas = document.getElementById("pieChart");
+  const ctx = canvas.getContext("2d");
   const total = data.reduce((sum, item) => sum + item.value, 0);
   let startAngle = 0;
 
@@ -68,16 +66,14 @@ function drawPieChart(data) {
     li.style.color = `${item.color}`;
     ul.appendChild(li);
 
-    ctx.fillStyle = item.color
+    ctx.fillStyle = item.color;
     ctx.fill();
 
-    ctx.strokeStyle = '#fff';
+    ctx.strokeStyle = "#fff";
     ctx.stroke();
-
 
     startAngle += sliceAngle;
   });
-
 }
 
 window.api.on("update-chart", async (data) => {
@@ -87,7 +83,7 @@ window.api.on("update-chart", async (data) => {
   }
   document.getElementById("pieChart").style.display = "block";
   const categoryCount = [];
-  data.forEach(item => {
+  data.forEach((item) => {
     const categoryName = item.category.name;
     if (!categoryCount[categoryName]) {
       categoryCount[categoryName] = Number(item.amount);
@@ -96,9 +92,8 @@ window.api.on("update-chart", async (data) => {
   });
   const result = Object.entries(categoryCount).map(([label, value]) => ({
     label,
-    value
+    value,
   }));
 
   drawPieChart(result);
 });
-

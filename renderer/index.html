@@ -16,9 +16,11 @@
 
   <body>
     <h1>Tus gastos</h1>
-    <ul id="categories-chart-list"></ul>
-    <div id="noCategoriesMessage"></div>
-    <canvas id="pieChart" width="200" height="200"></canvas>
+    <div id="div-pie-chart">
+      <canvas id="pieChart" width="200" height="200"></canvas>
+      <ul id="categories-chart-list"></ul>
+      <div id="noCategoriesMessage"></div>
+    </div>
     <div class="buttons-container">
       <button id="categoriesBtn" type="button" class="btn-secondary">
         Administrar categorías
@@ -28,7 +30,6 @@
       </button>
     </div>
     <div class="tableContainer">
-      <h3>Lista de gastos</h3>
       <h4 id="totalAmount"></h4>
       <table id="expensesTable"></table>
       <div id="noExpensesMessage" class="alert alert-warning"></div>

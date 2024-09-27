@@ -111,19 +111,7 @@ h4 span {
 
 canvas {
     display: block;
-    margin: 1rem auto 2rem auto;
-}
-
-#categoryForm {
-    display: flex;
-    align-items: center;
-    gap: .5rem;
-}
-
-
-#categoryForm button {
-    border-radius: .5rem;
-    padding: .5rem;
+    margin: 1rem 0 2rem 0;
 }
 
 #categoryForm input,
@@ -135,27 +123,12 @@ canvas {
 }
 
 #categories-chart-list {
-    width: 300px;
-    margin: 0 auto 1rem auto;
     font-size: 1rem;
 }
 
 .categories-main {
     width: 80%;
     margin: 0 auto;
-}
-
-#categoriesList {
-    padding: 0;
-    list-style-type: none;
-}
-
-#categoriesList li {
-    padding: .5rem;
-    margin: .5rem 0;
-    display: flex;
-    align-items: center;
-    gap: .5rem;
 }
 
 .alert-warning {
@@ -169,4 +142,11 @@ canvas {
     margin-bottom: 1rem;
     border: 1px solid transparent;
     border-radius: .25rem
+}
+
+#div-pie-chart{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }

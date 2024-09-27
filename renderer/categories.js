@@ -3,7 +3,7 @@
 window.api.on("categories", (categories) => {
   const list = document.getElementById("categoriesList");
   const items = categories.reduce((html, c) => {
-    html += `<li >${c.name}<button data-id="${c.id}" class="btn-secondary">Eliminar</button></li>`;
+    html += `<li>${c.name}<button data-id="${c.id}" class="delete-button btn-secondary">Eliminar</button></li>`;
     return html;
   }, "");
 
@@ -16,6 +16,8 @@ window.api.on("categories", (categories) => {
       });
     });
   });
+
+  window.api.send("screen-ready");
 });
 
 document.getElementById("categoryForm").addEventListener("submit", (event) => {
