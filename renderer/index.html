@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -10,16 +10,30 @@
       http-equiv="X-Content-Security-Policy"
       content="default-src 'self'; script-src 'self'"
     />
+    <link rel="stylesheet" href="index.css" />
     <title>Expense Tracker</title>
   </head>
 
   <body>
     <h1>Tus gastos</h1>
-    <p>Gráfico de anillo. Gastos en cada categoría</p>
-    <button id="categoriesBtn" type="button">Administrar categorías</button>
-    <button id="addExpenseBtn" type="button">Agregar gasto</button>
-    <h3>Lista de gastos</h3>
-    <table id="expensesTable"></table>
+    <div id="div-pie-chart">
+      <canvas id="pieChart" width="200" height="200"></canvas>
+      <ul id="categories-chart-list"></ul>
+      <div id="noCategoriesMessage"></div>
+    </div>
+    <div class="buttons-container">
+      <button id="categoriesBtn" type="button" class="btn-secondary">
+        Administrar categorías
+      </button>
+      <button id="addExpenseBtn" type="button" class="btn-primary">
+        Agregar gasto
+      </button>
+    </div>
+    <div class="tableContainer">
+      <h4 id="totalAmount"></h4>
+      <table id="expensesTable"></table>
+      <div id="noExpensesMessage" class="alert alert-warning"></div>
+    </div>
   </body>
 
   <script src="./index.js"></script>

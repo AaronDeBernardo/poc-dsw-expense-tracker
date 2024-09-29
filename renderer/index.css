@@ -1,0 +1,152 @@
+:root {
+    --bg-th: #323440;
+    --bg-th-hover: #262833;
+    --ligthblue: #a7ebf3;
+    --ligthblue-hover: #77c8d1;
+}
+
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+    font-size: 1.7rem;
+    text-align: center;
+}
+
+button {
+    cursor: pointer;
+}
+
+.tableContainer,
+.buttons-container {
+    width: 95%;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.buttons-container {
+    flex-direction: row;
+    gap: .5rem;
+}
+
+.buttons-container button {
+    font-size: 1rem;
+    padding: 1rem;
+    -webkit-box-shadow: -2px 10px 10px -7px rgba(0, 0, 0, 0.21);
+    -moz-box-shadow: -2px 10px 10px -7px rgba(0, 0, 0, 0.21);
+    box-shadow: -2px 10px 10px -7px rgba(0, 0, 0, 0.21);
+    cursor: pointer;
+    border: 1px solid #ababab;
+    border-radius: .5rem;
+}
+
+.btn-secondary {
+    cursor: pointer;
+    border: none;
+    background-color: var(--bg-th);
+    color: var(--ligthblue);
+    transition: all .3s ease-in-out;
+}
+
+.btn-secondary:hover {
+    background-color: var(--bg-th-hover);
+}
+
+.btn-primary {
+    border: none;
+    background-color: var(--ligthblue);
+    color: var(--bg-th);
+    transition: all .3s ease-in-out;
+}
+
+.btn-primary:hover {
+    background-color: var(--ligthblue-hover);
+}
+
+h3,
+h4 {
+    font-size: 1.5rem;
+    margin: 1rem auto;
+    text-align: center;
+}
+
+h4 span {
+    font-weight: lighter;
+}
+
+#expensesTable {
+    -webkit-box-shadow: 1px 10px 8px 0px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 1px 10px 8px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 1px 10px 8px 0px rgba(0, 0, 0, 0.15);
+    margin: 2rem 0;
+}
+
+#expensesTable th {
+    background-color: var(--bg-th);
+    color: var(--ligthblue);
+    font-weight: lighter;
+}
+
+#expensesTable td,
+#expensesTable th {
+    padding: 1rem;
+    text-align: center;
+    font-size: 1rem;
+}
+
+#expensesTable tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#expensesTable tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+.form-field label {
+    font-weight: bold;
+}
+
+canvas {
+    display: block;
+    margin: 1rem 0 2rem 0;
+}
+
+#categoryForm input,
+.form-field input,
+.form-field select {
+    border-radius: .5rem;
+    padding: .5rem;
+    border: 1px solid #8d8d8d;
+}
+
+#categories-chart-list {
+    font-size: 1rem;
+}
+
+.categories-main {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.alert-warning {
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
+
+.alert {
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem
+}
+
+#div-pie-chart{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}

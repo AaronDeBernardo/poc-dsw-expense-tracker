@@ -1,35 +1,32 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline'; script-src 'self'">
-  <meta http-equiv="X-Content-Security-Policy" content="default-src 'self' 'unsafe-inline'; script-src 'self'">
-  <title>Categorías</title>
-  <style>
-    body{
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      flex-direction: column;
-    }
-    button:hover{
-      cursor: pointer;
-    }
-    .delete-button{
-      margin-left: 15px;
-    }
-  </style>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <meta
+      http-equiv="X-Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="categories.css" />
+    <title>Categorías</title>
+  </head>
 
-<body>
-  <h3>Categorías</h3>
-  
-  <ul id="categoriesList"></ul>
-  
-  <form id="categoryForm">
-    <input type="text"><button type="submit" style="background-color: aquamarine;">Añadir</button>
-  </form>
-</body>
+  <body>
+    <h3>Categorías</h3>
 
-<script src="./categories.js"></script>
+    <main class="categories-main">
+      <ul id="categoriesList"></ul>
+
+      <form id="categoryForm">
+        <input type="text" />
+        <button type="submit" class="btn-primary">Añadir</button>
+      </form>
+    </main>
+  </body>
+
+  <script src="./categories.js"></script>
 </html>
